@@ -1,8 +1,5 @@
-require! 'lib/style'
-
 export o-dialog =
   view: '''
-
   '''
   style: '''
     background white

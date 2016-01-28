@@ -1,5 +1,3 @@
-# q.material.init!
-
 github = (username, password, api, method) ->
   info do
     method: method
@@ -20,7 +18,6 @@ export c-root =
             o-textfield GitHub Password
             o-textfield GitHub Repository
   '''
-
   style: '''
     background: hue.primary
     position   absolute
