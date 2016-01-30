@@ -1,15 +1,6 @@
-github = (username, password, api, method) ->
-  info do
-    method: method
-    headers:
-      Authorization: "Basic #{btoa(username + ':' + password)}"
-  q.ajax "https://api.github.com/#api",
-    method: method
-    headers:
-      Authorization: "Basic #{btoa(username + ':' + password)}"
+require! \octonode
 
 export cahoots-root =
-  xclass: 'fill center'
   view: '''
     material-primary-toolbar
     cahoots-credentials-dialog
@@ -20,4 +11,6 @@ export cahoots-root =
     flex-direction column
   '''
   ready: ->
+    github = octonode.client $state.github{username, password}
+    github.me!info -> info &
 

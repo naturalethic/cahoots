@@ -16,6 +16,7 @@
     "livescript": "^1.4.0",
     "nib": "^1.1.0",
     "object-path": "github:naturalethic/object-path",
+    "octonode": "^0.7.4",
     "rupture": "^0.6.1",
     "stylus": "^0.53.0",
     "virtual-dom": "^2.1.1"
