@@ -34,5 +34,3 @@ export cahoots-root =
       justify-content center
   '''
   ready: ->
-    # require! \electron
-    # info electron.ipc-renderer.send-sync('ping')

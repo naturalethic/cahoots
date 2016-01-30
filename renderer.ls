@@ -1,5 +1,12 @@
 require! \glob
 require! \jade
+require! \stylus
+require! \nib
+require! \rupture
+require! \remote
+require! \fs
+
+fs.path = require 'path'
 
 global <<< require \prelude-ls
 
@@ -12,6 +19,19 @@ vdom =
   patch:          require 'virtual-dom/patch'
   create-element: require 'virtual-dom/create-element'
   convert:        require 'html-to-vdom'
+
+global <<<
+  $config: (name, value) ->
+    config-path = "#{remote.app.get-path('appData')}/Cahoots/config.json"
+    if not fs.path.exists-sync fs.path.dirname config-path
+      fs.mkdir-sync fs.path.dirname config-path
+    config = {}
+    if fs.path.exists-sync config-path
+      config = JSON.parse(fs.read-file-sync config-path, 'utf8')
+    if not is-type \Undefined value
+      config[name] = value
+      fs.write-file-sync config-path, JSON.stringify config
+    config[name]
 
 register-component = (name, component) ->
   info "Registering #name"
@@ -101,7 +121,17 @@ register-component = (name, component) ->
   prototype <<< component
   document.register-element name, prototype: prototype
 
+style = [
+  fs.read-file-sync "#__dirname/component/index.styl", 'utf8'
+]
 glob.sync "#__dirname/component/**/*.ls"
 |> map -> require it
 |> map obj-to-pairs
-|> each -> it |> each -> register-component (dasherize it.0), it.1
+|> each -> it |> each ->
+  style.push "#{dasherize it.0}\n  #{(delete it.1.style).trim!split('\n').join('\n  ')}"
+  register-component (dasherize it.0), it.1
+style = stylus style.join('\n')
+style.use(nib!).use(rupture!).import(\nib).import(\rupture)
+style = style.render!trim!split('\n').join('\n')
+((document.get-elements-by-tag-name \head).0.append-child(document.create-element \style)).append-child(document.create-text-node style)
+
