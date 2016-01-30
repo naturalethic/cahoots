@@ -1,6 +1,4 @@
-export o-dialog =
-  view: '''
-  '''
+export material-dialog =
   style: '''
     background white
     min-width  280px

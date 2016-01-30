@@ -1,4 +1,4 @@
-export o-textfield =
+export material-textfield =
   view: '''
     label
       span!= content
@@ -41,5 +41,5 @@ export o-textfield =
         width 50%
   '''
   start: ->
-    @on \focus, 'input', ~> @q.add-class \focus
-    @on \blur, 'input', ~> @q.remove-class \focus
+    @on \focus, 'input', ~> @classify \focus
+    @on \blur, 'input', ~> @declassify \focus

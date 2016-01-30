@@ -8,23 +8,19 @@ github = (username, password, api, method) ->
     headers:
       Authorization: "Basic #{btoa(username + ':' + password)}"
 
-export c-root =
+export cahoots-root =
   view: '''
     .row.fill.center
       .col.center
-        o-dialog
+        material-dialog
           .col
-            o-textfield GitHub Username
-            o-textfield GitHub Password
-            o-textfield GitHub Repository
+            material-textfield GitHub Username
+            material-textfield GitHub Password
+            material-textfield GitHub Repository
   '''
   style: '''
     background: hue.primary
-    position   absolute
-    top        0
-    right      0
-    bottom     0
-    left       0
+    position    absolute 0 0 0 0
     .row
       display        flex
       flex-direction row
@@ -32,9 +28,11 @@ export c-root =
       display        flex
       flex-direction column
     .fill
-      width 100%
+      width  100%
       height 100%
     .center
       justify-content center
   '''
   ready: ->
+    # require! \electron
+    # info electron.ipc-renderer.send-sync('ping')

@@ -8,7 +8,18 @@
   },
   "author": "Joshua Kifer",
   "license": "None",
-  "devDependencies": {
-    "electron-prebuilt": "^0.36.0"
+  "dependencies": {
+    "chokidar": "^1.4.2",
+    "glob": "^6.0.4",
+    "html-to-vdom": "^0.7.0",
+    "jade": "^1.11.0",
+    "livescript": "^1.4.0",
+    "nib": "^1.1.0",
+    "rupture": "^0.6.1",
+    "stylus": "^0.53.0",
+    "virtual-dom": "^2.1.1"
+  },
+  "scripts": {
+    "build": "lsc script/build.ls"
   }
 }

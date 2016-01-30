@@ -1,2 +1,0 @@
-export do
-  name: 'cahoots'
