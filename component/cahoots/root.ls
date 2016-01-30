@@ -9,28 +9,15 @@ github = (username, password, api, method) ->
       Authorization: "Basic #{btoa(username + ':' + password)}"
 
 export cahoots-root =
+  xclass: 'fill center'
   view: '''
-    .row.fill.center
-      .col.center
-        material-dialog
-          .col
-            material-textfield GitHub Username
-            material-textfield GitHub Password
-            material-textfield GitHub Repository
+    material-primary-toolbar
+    cahoots-credentials-dialog
   '''
   style: '''
-    background: hue.primary
     position    absolute 0 0 0 0
-    .row
-      display        flex
-      flex-direction row
-    .col
-      display        flex
-      flex-direction column
-    .fill
-      width  100%
-      height 100%
-    .center
-      justify-content center
+    display     flex
+    flex-direction column
   '''
   ready: ->
+
