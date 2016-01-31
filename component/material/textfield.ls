@@ -6,28 +6,28 @@ export material-textfield =
       .bar
   '''
   style: '''
-    height 72px
+    height   72px
     position relative
     label
       position absolute 0 0 0 0
-      color color-textfield-inactive
+      color    color-textfield-inactive
     span
-      position absolute 0px 16px
+      position  absolute 0px 16px
       font-size 12px
     input
-      position absolute 0px 36px
-      width 100%
-      font-size 16px
-      border-bottom 1px solid color-textfield-inactive
+      position       absolute 0px 36px
+      width          100%
+      font-size      16px
+      border-bottom  1px solid color-textfield-inactive
       padding-bottom 8px
     .bar
-      position absolute 0px 63px
-      width 100%
+      position  absolute 0px 63px
+      width     100%
       &:before, &:after
-        content ''
-        position absolute
-        height 2px
-        width 0
+        content    ''
+        position   absolute
+        height     2px
+        width      0
         background color-textfield-active
         transition 0.2s ease all
       &:before

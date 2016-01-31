@@ -54,11 +54,14 @@ register-component = (name, component) ->
   prototype = Object.create HTMLElement.prototype
   prototype <<<
     attached-callback: ->
+      return if @initialized
+      @initialized = true
       info "Attached #name"
       if @class
         @class-name = delete @class
-      @scope = {}
-      @scope.content = @innerHTML
+      @scope =
+        content: @innerHTML
+        attr: ~> @attr it
       if @view = (@view and @view.trim! and (jade.compile @view, pretty: true)) or null
         @innerHTML = ''
       @start!
@@ -148,6 +151,10 @@ register-component = (name, component) ->
       @query-selector query
     all: (query) ->
       @query-selector-all query
+    create: (name) ->
+      document.create-element name
+    append: (el) ->
+      @append-child el
   prototype <<< component
   document.register-element name, prototype: prototype
 
@@ -164,6 +171,7 @@ glob.sync "#__dirname/component/**/*.ls"
   register-component (dasherize it.0), it.1
 style = stylus style.join('\n')
 style.use(nib!).use(rupture!).import(\nib).import(\rupture)
+style.include("#__dirname")
 style = style.render!trim!split('\n').join('\n')
 ((document.get-elements-by-tag-name \head).0.append-child(document.create-element \style)).append-child(document.create-text-node style)
 
